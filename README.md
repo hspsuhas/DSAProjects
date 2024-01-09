@@ -6,4 +6,6 @@ Welcome to the DSA Projects Repository! This repository is a collection of hands
 
 - **Huffman Coding:** https://huffmancoding.streamlit.app/
 - **Metro Planner:** https://metro-planner.streamlit.app/
+- **Stack-Based-Calculator:** https://stack-calculator.streamlit.app/
 - **Sudoku Solver:** https://sudoku-solver.streamlit.app/
+- **ToDo List:** https://t0d0-list.streamlit.app/
