@@ -13,7 +13,7 @@ This repository contains a simple stack-based calculator web app built using Str
 
 1. **Clone this repository:**
     ```bash
-    git clone https://github.com/your-username/stack-based-calculator
+    git clone https://github.com/hspsuhas/Stack-Based-Calculator
     ```
 
 2. **Install Streamlit:**
@@ -23,7 +23,7 @@ This repository contains a simple stack-based calculator web app built using Str
 3. **Running the App**
 Navigate to the project directory:
     ```bash
-    cd stack-based-calculator
+    cd Stack-Based-Calculator
     ```
 4. **Run the app:**
     ```bash
@@ -37,3 +37,7 @@ Navigate to the project directory:
 1. Enter an expression in infix notation in the text box.
 2. Click the "Evaluate" button.
 3. The app will display the postfix expression and the calculated result.
+
+## Deployed Site
+
+https://stack-calculator.streamlit.app/

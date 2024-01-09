@@ -6,9 +6,6 @@ st.markdown(
     [data-baseweb="input"] {
         margin-top: -30px;
     }
-    [data-baseweb="textarea"] {
-        margin-top: -30px;
-    }
     </style>
     """,
     unsafe_allow_html=True,
@@ -27,7 +24,7 @@ def infix_to_postfix(expression):
         elif token == ")":
             while stack[-1] != "(":
                 postfix += stack.pop() + " "
-            stack.pop()  # Remove the "("
+            stack.pop() 
         else:
             while stack and stack[-1] != "(" and precedence[token] <= precedence[stack[-1]]:
                 postfix += stack.pop() + " "
@@ -59,7 +56,7 @@ def evaluate_expression(expression):
                 operator = stack.pop()
                 result = calculate(operand1, operand2, operator)
                 stack.append(result)
-            stack.pop()  # Remove the "("
+            stack.pop()
 
     return stack.pop()
 
