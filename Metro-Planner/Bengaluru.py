@@ -44,11 +44,11 @@ else:
     st.sidebar.info("Logo not found. Ensure `images/namma_metro.png` is in the repo.")
 
 st.sidebar.markdown("#### Tips")
-st.sidebar.write(
-    "- Start typing a station name to filter.\n"
-    "- If you mistype, we’ll suggest the closest match.\n"
-    "- Interchange stations are highlighted."
-)
+# st.sidebar.write(
+#     "- Start typing a station name to filter.\n"
+#     "- If you mistype, we’ll suggest the closest match.\n"
+#     "- Interchange stations are highlighted."
+# )
 
 # -----------------------------
 # Simple Theme Polish
@@ -200,27 +200,27 @@ with colA:
 with colB:
     dest = st.selectbox("Destination", all_stations, index=min(1, len(all_stations)-1), key="dst_select")
 
-st.write("Or type to auto-correct a misspelled station (optional):")
-colC, colD = st.columns(2)
-with colC:
-    typo_src = st.text_input("Source (free text)", placeholder="e.g., majestic")
-with colD:
-    typo_dst = st.text_input("Destination (free text)", placeholder="e.g., rv road")
+# st.write("Or type to auto-correct a misspelled station (optional):")
+# colC, colD = st.columns(2)
+# with colC:
+#     typo_src = st.text_input("Source (free text)", placeholder="e.g., majestic")
+# with colD:
+#     typo_dst = st.text_input("Destination (free text)", placeholder="e.g., rv road")
 
-fix_btn = st.button("Auto-correct typed names")
-if fix_btn:
-    c_src = closest_station_name(typo_src) if typo_src else None
-    c_dst = closest_station_name(typo_dst) if typo_dst else None
-    if c_src:
-        source = c_src
-        st.success(f"Source corrected to **{source}**")
-    if c_dst:
-        dest = c_dst
-        st.success(f"Destination corrected to **{dest}**")
-    if not c_src and typo_src:
-        st.warning("Couldn’t find a close match for the typed source.")
-    if not c_dst and typo_dst:
-        st.warning("Couldn’t find a close match for the typed destination.")
+# fix_btn = st.button("Auto-correct typed names")
+# if fix_btn:
+#     c_src = closest_station_name(typo_src) if typo_src else None
+#     c_dst = closest_station_name(typo_dst) if typo_dst else None
+#     if c_src:
+#         source = c_src
+#         st.success(f"Source corrected to **{source}**")
+#     if c_dst:
+#         dest = c_dst
+#         st.success(f"Destination corrected to **{dest}**")
+#     if not c_src and typo_src:
+#         st.warning("Couldn’t find a close match for the typed source.")
+#     if not c_dst and typo_dst:
+#         st.warning("Couldn’t find a close match for the typed destination.")
 
 # -----------------------------
 # Find & Display Routes
@@ -294,4 +294,5 @@ if missing:
         "Missing files in repo:\n- " + "\n- ".join(missing) +
         "\n\nCommit & push these files so Streamlit Cloud can load them."
     )
+
 
