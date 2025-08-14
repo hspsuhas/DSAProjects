@@ -113,14 +113,17 @@ def is_interchange(station: str) -> bool:
     # Some known interchanges might have degree==2 due to data specifics; keep a manual allow-list too.
     manual = {
         "NADAPRABHU KEMPEGOWDA STATION, MAJESTIC",
-        "KRANTIVIRA SANGOLLI RAYANNA RAILWAY STATION",
-        "SRI M VISVESWARAYA STATION, CENTRAL COLLEGE",
-        "RASHTREEYA VIDYALAYA ROAD",
-        "JAYADEVA HOSPITAL",
-        "CENTRAL SILK BOARD",
+    "RASHTREEYA VIDYALAYA ROAD",
+    "BYAPPANAHALLI"
     }
     deg = len(bengaluru.get(station, []))
     return deg >= 3 or station in manual
+
+INTERCHANGES = {
+    "NADAPRABHU KEMPEGOWDA STATION, MAJESTIC",
+    "RASHTREEYA VIDYALAYA ROAD",
+    "BYAPPANAHALLI"
+}
 
 # -----------------------------
 # Shortest Path (BFS)
@@ -170,6 +173,23 @@ def calc_fare(distance_km: float) -> int:
     elif distance_km <= 15: return 35
     elif distance_km <= 20: return 45
     else: return 60
+
+def calc_fare_splitted(path: list) -> int:
+    if not path:
+        return 0
+    total_fare = 0
+    segment = [path[0]]
+    for station in path[1:]:
+        segment.append(station)
+        if station in INTERCHANGES and station != path[-1]:
+            # Current segment ends here
+            km = calc_distance_km(segment)
+            total_fare += calc_fare(km)
+            segment = [station]
+    # Final segment
+    km = calc_distance_km(segment)
+    total_fare += calc_fare(km)
+    return total_fare
 
 # -----------------------------
 # UI Inputs (with fuzzy fix)
@@ -229,7 +249,7 @@ if go:
             # Metrics
             distance_km = round(calc_distance_km(path), 2)
             time_min = calc_time_minutes(path)
-            fare = calc_fare(distance_km)
+            fare = calc_fare_splitted(path)
 
             st.markdown("<div class='metric-row'>", unsafe_allow_html=True)
             st.markdown(
@@ -274,3 +294,4 @@ if missing:
         "Missing files in repo:\n- " + "\n- ".join(missing) +
         "\n\nCommit & push these files so Streamlit Cloud can load them."
     )
+
